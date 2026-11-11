@@ -13,7 +13,7 @@ if db_url.startswith("sqlite"):
 else:
     # PostgreSQL / Supabase Session Pooler configuration
     connect_args: Dict[str, Any] = {
-        "connect_timeout": 5,
+        "connect_timeout": 15,
     }
     if "sslmode=" not in db_url.lower():
         connect_args["sslmode"] = "require"
