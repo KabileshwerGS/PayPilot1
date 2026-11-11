@@ -291,10 +291,12 @@ async def capture_tip_order(
     db.commit()
 
     # Record notification for creator
+    sender_name = "Anonymous" if tip.is_anonymous else tip.supporter_name
+    tip_note = f' Message: "{tip.message}"' if tip.message else ""
     notif = Notification(
         user_id=profile.user_id,
         title="New Fan Tip Received! 🎉",
-        message=f"{'Anonymous' if tip.is_anonymous else tip.supporter_name} tipped you {tip.currency} {tip.amount:.2f}! {f'Message: \"{tip.message}\"' if tip.message else ''}",
+        message=f"{sender_name} tipped you {tip.currency} {tip.amount:.2f}!{tip_note}",
         notification_type="TIP_RECEIVED",
         link_url="/creator",
     )

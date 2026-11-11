@@ -88,6 +88,16 @@ app.include_router(pos_router, prefix=settings.API_V1_STR)
 app.include_router(public_pos_router, prefix=settings.API_V1_STR)
 app.include_router(intelligence_router, prefix=settings.API_V1_STR)
 
+@app.get("/")
+def root():
+    return {
+        "status": "ok",
+        "service": "PayPilot Backend Engine",
+        "docs": f"{settings.API_V1_STR}/docs",
+        "health": "/api/health",
+    }
+
+
 @app.get("/api/health")
 def health_check():
     try:

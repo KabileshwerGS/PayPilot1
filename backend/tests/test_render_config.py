@@ -1,6 +1,8 @@
 """Tests for Render deployment configuration, database URL validation, and health check."""
 
+from pathlib import Path
 from unittest.mock import patch
+import ast
 import pytest
 from fastapi.testclient import TestClient
 from sqlalchemy.engine import make_url
@@ -55,8 +57,12 @@ def test_cors_origins_strips_trailing_slashes():
     assert "https://app.example.com" in cfg.cors_origins_list
 
 
-def test_health_check_connected_and_disconnected():
+def test_root_and_health_check_connected_and_disconnected():
     client = TestClient(app)
+    res_root = client.get("/")
+    assert res_root.status_code == 200
+    assert res_root.json()["status"] == "ok"
+
     res_ok = client.get("/api/health")
     assert res_ok.status_code == 200
     assert res_ok.json() == {
@@ -73,4 +79,17 @@ def test_health_check_connected_and_disconnected():
         "service": "PayPilot Backend Engine",
         "database": "disconnected",
     }
+
+
+def test_backend_fstrings_compatible_with_python_311():
+    app_dir = Path(__file__).resolve().parents[1] / "app"
+    for py_file in app_dir.rglob("*.py"):
+        src = py_file.read_text(encoding="utf-8")
+        tree = ast.parse(src, filename=str(py_file))
+        for node in ast.walk(tree):
+            if isinstance(node, ast.JoinedStr):
+                for val in node.values:
+                    if isinstance(val, ast.FormattedValue):
+                        expr_src = ast.get_source_segment(src, val.value) or ""
+                        assert "\\" not in expr_src, f"Backslash in f-string expr at {py_file}:{val.lineno}"
 
