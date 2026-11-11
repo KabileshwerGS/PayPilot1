@@ -1,0 +1,162 @@
+@import './styles/variables.css';
+@import './styles/paypilot.css';
+
+html, body, #root {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100vh;
+  box-sizing: border-box;
+  font-family: var(--font-family);
+  background-color: var(--bg-main, #F8FAFC);
+  color: var(--text-main, #0F172A);
+  overflow-x: hidden;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Custom scrollbars for clean white theme */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-main, #F8FAFC);
+}
+::-webkit-scrollbar-thumb {
+  background: #CBD5E1;
+  border-radius: var(--radius-full);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94A3B8;
+}
+
+/* Custom utility styles */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  border: 1px solid transparent;
+}
+
+.badge-paid {
+  background: var(--status-paid-bg);
+  color: var(--status-paid-text);
+  border-color: var(--status-paid-border);
+}
+
+.badge-pending {
+  background: var(--status-pending-bg);
+  color: var(--status-pending-text);
+  border-color: var(--status-pending-border);
+}
+
+.badge-overdue {
+  background: var(--status-overdue-bg);
+  color: var(--status-overdue-text);
+  border-color: var(--status-overdue-border);
+}
+
+.badge-draft {
+  background: var(--status-draft-bg);
+  color: var(--status-draft-text);
+  border-color: var(--status-draft-border);
+}
+
+.badge-sent {
+  background: var(--status-sent-bg);
+  color: var(--status-sent-text);
+  border-color: var(--status-sent-border);
+}
+
+.badge-cancelled {
+  background: var(--status-cancelled-bg);
+  color: var(--status-cancelled-text);
+  border-color: var(--status-cancelled-border);
+}
+
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 48px 24px;
+  text-align: center;
+  background: #FFFFFF;
+  border-radius: var(--radius-lg);
+  border: 1px dashed #CBD5E1;
+  box-shadow: var(--shadow-card);
+}
+
+.empty-state-icon {
+  width: 58px;
+  height: 58px;
+  border-radius: 14px;
+  background: rgba(99, 102, 241, 0.08);
+  color: var(--primary-violet, #6366F1);
+  display: grid;
+  place-items: center;
+  margin-bottom: 16px;
+  border: 1px solid rgba(99, 102, 241, 0.2);
+}
+
+.empty-state h3 {
+  margin: 0 0 8px 0;
+  font-size: 18px;
+  color: var(--text-main, #0F172A);
+  font-weight: 700;
+}
+
+.empty-state p {
+  margin: 0 0 20px 0;
+  font-size: 14px;
+  color: var(--text-secondary, #475569);
+  max-width: 440px;
+  line-height: 1.5;
+}
+
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.data-table th {
+  background: #F8FAFC;
+  color: var(--text-secondary, #475569);
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--border-muted, #E2E8F0);
+  text-align: left;
+}
+
+.data-table td {
+  padding: 16px;
+  border-bottom: 1px solid var(--border-subtle, #F1F5F9);
+  font-size: 14px;
+  color: var(--text-main, #0F172A);
+  transition: background-color 0.2s ease;
+}
+
+.data-table tr:hover td {
+  background-color: #F8FAFC;
+}

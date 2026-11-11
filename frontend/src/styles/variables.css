@@ -1,0 +1,188 @@
+:root {
+  /* ============================================================
+     PAYPILOT DESIGN SYSTEM: CRISP MODERN WHITE / LIGHT THEME
+     Clean, professional fintech aesthetic (Stripe / Mercury / Linear)
+     ============================================================ */
+
+  /* Clean White & Crisp Light Backgrounds */
+  --bg-midnight: #F8FAFC;
+  --bg-main: #F8FAFC;
+  --bg-mesh: radial-gradient(at 10% 8%, rgba(99, 102, 241, 0.05) 0px, transparent 48%),
+             radial-gradient(at 90% 12%, rgba(59, 130, 246, 0.05) 0px, transparent 44%),
+             radial-gradient(at 90% 88%, rgba(236, 72, 153, 0.04) 0px, transparent 46%),
+             radial-gradient(at 8% 85%, rgba(16, 185, 129, 0.04) 0px, transparent 44%),
+             #F8FAFC;
+  --bg-sidebar: #FFFFFF;
+  --bg-card: #FFFFFF;
+  --bg-card-hover: #F8FAFC;
+  --bg-elevated: #F1F5F9;
+  --bg-surface: #FFFFFF;
+  --bg-subtle: #F8FAFC;
+  --bg-input: #FFFFFF;
+  --bg-input-focus: #FFFFFF;
+  --bg-hover: #F1F5F9;
+  --bg-modal: #FFFFFF;
+  --bg-overlay: rgba(15, 23, 42, 0.50);
+
+  /* Glassmorphism & Elevation Tokens (Clean Light Mode) */
+  --glass-bg: #FFFFFF;
+  --glass-bg-elevated: #FFFFFF;
+  --glass-blur: blur(12px);
+  --glass-border: 1px solid #E2E8F0;
+  --glass-border-hover: 1px solid #CBD5E1;
+  --glass-shadow: 0 1px 3px rgba(15, 23, 42, 0.06), 0 1px 2px rgba(15, 23, 42, 0.04), 0 0 0 1px rgba(15, 23, 42, 0.05);
+  --glass-shadow-hover: 0 10px 25px -5px rgba(15, 23, 42, 0.08), 0 8px 10px -6px rgba(15, 23, 42, 0.04), 0 0 0 1px rgba(15, 23, 42, 0.08);
+
+  /* Primary Brand Identity (Indigo / Violet) */
+  --primary-violet: #6366F1;
+  --bright-violet: #4F46E5;
+  --lavender: #4F46E5;
+  --lavender-light: #EEF2FF;
+  --primary-indigo: #6366F1;
+  --deep-indigo: #4338CA;
+  --primary-blue: #2563EB;
+  --bright-blue: #3B82F6;
+
+  /* Aurora Accents (Tuned for High Contrast on White) */
+  --aurora-cyan: #0284C7;
+  --cyan-accent: #0284C7;
+  --cyan: #0284C7;
+  --neon-pink: #E11D48;
+  --neon-magenta: #E11D48;
+
+  /* ============================================================
+     4 UNIFIED BUSINESS SOLUTIONS THEME SYSTEM (LIGHT MODE)
+     ============================================================ */
+
+  /* Solution 1: Freelancer Hub & Invoicing (Electric Blue / Azure) */
+  --color-freelancer: #2563EB;
+  --color-freelancer-light: #1D4ED8;
+  --color-freelancer-bg: rgba(37, 99, 235, 0.08);
+  --color-freelancer-border: rgba(37, 99, 235, 0.25);
+  --color-freelancer-gradient: linear-gradient(135deg, #1D4ED8 0%, #2563EB 50%, #0284C7 100%);
+  --glow-freelancer: 0 4px 16px rgba(37, 99, 235, 0.18);
+
+  /* Solution 2: Creator Hub (Neon Rose / Magenta Passion) */
+  --color-creator: #E11D48;
+  --color-creator-light: #BE185D;
+  --color-creator-bg: rgba(225, 29, 72, 0.08);
+  --color-creator-border: rgba(225, 29, 72, 0.25);
+  --color-creator-gradient: linear-gradient(135deg, #BE185D 0%, #E11D48 50%, #FB7185 100%);
+  --glow-creator: 0 4px 16px rgba(225, 29, 72, 0.18);
+
+  /* Solution 3: Marketplace (Royal Amethyst / Deep Violet) */
+  --color-marketplace: #7C3AED;
+  --color-marketplace-light: #6D28D9;
+  --color-marketplace-bg: rgba(124, 58, 237, 0.08);
+  --color-marketplace-border: rgba(124, 58, 237, 0.25);
+  --color-marketplace-gradient: linear-gradient(135deg, #5B21B6 0%, #7C3AED 50%, #6366F1 100%);
+  --glow-marketplace: 0 4px 16px rgba(124, 58, 237, 0.18);
+
+  /* Solution 4: POS Terminal (Electric Mint / Luminous Emerald) */
+  --color-pos: #059669;
+  --color-pos-light: #047857;
+  --color-pos-bg: rgba(5, 150, 105, 0.08);
+  --color-pos-border: rgba(5, 150, 105, 0.25);
+  --color-pos-gradient: linear-gradient(135deg, #047857 0%, #059669 50%, #0D9488 100%);
+  --glow-pos: 0 4px 16px rgba(5, 150, 105, 0.18);
+
+  /* AI Holographic Aurora */
+  --color-ai-gradient: linear-gradient(135deg, #6366F1 0%, #E11D48 50%, #0284C7 100%);
+  --glow-ai: 0 4px 20px rgba(99, 102, 241, 0.2);
+
+  /* WhatsApp Brand Accent */
+  --color-whatsapp: #16A34A;
+  --color-whatsapp-gradient: linear-gradient(135deg, #15803D 0%, #16A34A 100%);
+  --glow-whatsapp: 0 4px 16px rgba(22, 163, 74, 0.25);
+
+  /* PayPal Brand */
+  --color-paypal-gradient: linear-gradient(135deg, #0070BA 0%, #003087 100%);
+  --color-paypal-gold: #F59E0B;
+
+  /* Aliases */
+  --primary: var(--primary-violet);
+  --primary-hover: #4F46E5;
+  --color-primary: #6366F1;
+  --color-primary-light: #818CF8;
+
+  /* Gradients */
+  --primary-gradient: linear-gradient(135deg, #6366F1 0%, #4F46E5 50%, #4338CA 100%);
+  --primary-gradient-hover: linear-gradient(135deg, #4F46E5 0%, #4338CA 50%, #3730A3 100%);
+  --aurora-gradient: linear-gradient(135deg, #6366F1 0%, #0284C7 55%, #38BDF8 100%);
+  --neon-gradient: linear-gradient(135deg, #E11D48 0%, #7C3AED 100%);
+  --brand-gradient: linear-gradient(135deg, #6366F1 0%, #0284C7 100%);
+  --card-gradient: #FFFFFF;
+  --card-elevated-gradient: #FFFFFF;
+  --heading-gradient: linear-gradient(135deg, #0F172A 20%, #4338CA 100%);
+
+  /* Text & Typography */
+  --text-main: #0F172A;
+  --text-secondary: #475569;
+  --text-muted: #94A3B8;
+  --text-on-dark: #FFFFFF;
+  --text-sidebar-muted: #64748B;
+  --text-highlight: #4338CA;
+
+  /* Borders & Dividers */
+  --muted-borders: #E2E8F0;
+  --border-muted: #E2E8F0;
+  --border-light: #F1F5F9;
+  --border-subtle: #F1F5F9;
+  --border-sidebar: #E2E8F0;
+  --border-focus: #6366F1;
+
+  /* Semantic Statuses */
+  --status-success: #059669;
+  --status-warning: #D97706;
+  --status-error: #DC2626;
+  --color-success: #059669;
+  --color-warning: #D97706;
+  --color-danger: #DC2626;
+
+  --status-paid-bg: rgba(5, 150, 105, 0.10);
+  --status-paid-text: #059669;
+  --status-paid-border: rgba(5, 150, 105, 0.30);
+
+  --status-pending-bg: rgba(217, 119, 6, 0.10);
+  --status-pending-text: #D97706;
+  --status-pending-border: rgba(217, 119, 6, 0.30);
+
+  --status-overdue-bg: rgba(220, 38, 38, 0.10);
+  --status-overdue-text: #DC2626;
+  --status-overdue-border: rgba(220, 38, 38, 0.30);
+
+  --status-draft-bg: rgba(100, 116, 139, 0.10);
+  --status-draft-text: #475569;
+  --status-draft-border: rgba(100, 116, 139, 0.25);
+
+  --status-sent-bg: rgba(2, 132, 199, 0.10);
+  --status-sent-text: #0284C7;
+  --status-sent-border: rgba(2, 132, 199, 0.25);
+
+  --status-cancelled-bg: rgba(148, 163, 184, 0.12);
+  --status-cancelled-text: #64748B;
+  --status-cancelled-border: rgba(148, 163, 184, 0.25);
+
+  /* Shadows (Soft & Clean Light Mode) */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.07), 0 2px 4px -2px rgba(0, 0, 0, 0.04);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.04);
+  --shadow-card: 0 1px 3px rgba(15, 23, 42, 0.05), 0 0 0 1px rgba(15, 23, 42, 0.05);
+  --shadow-card-hover: 0 10px 25px -5px rgba(15, 23, 42, 0.08), 0 0 0 1px rgba(15, 23, 42, 0.08);
+  --glow-violet: 0 4px 16px rgba(99, 102, 241, 0.20);
+  --glow-blue: 0 4px 16px rgba(37, 99, 235, 0.20);
+  --glow-pink: 0 4px 16px rgba(225, 29, 72, 0.20);
+  --glow-cyan: 0 4px 16px rgba(2, 132, 199, 0.20);
+  --glow-card: 0 2px 8px rgba(15, 23, 42, 0.05);
+  --glow-button: 0 4px 14px rgba(99, 102, 241, 0.35);
+
+  /* Radii */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+  --radius-full: 9999px;
+
+  /* Font */
+  --font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
