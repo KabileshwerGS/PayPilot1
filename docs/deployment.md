@@ -66,16 +66,19 @@ python backend/scripts/migrate_sqlite_to_supabase.py --sqlite paypilot.db
 
 ## 2. Phase 2: Backend Deployment on Render
 
+> **Important:** PayPilot's backend is a FastAPI HTTP API and **must** be deployed as a Render **Web Service** (not a Background Worker, which does not expose a public HTTP port/URL).  
+> You can deploy automatically using the included [`render.yaml`](../render.yaml) Blueprint (which pins Python `3.11.11` via [`.python-version`](../.python-version) and configures `/api/health`) or manually using the steps below.
+
 ### Step 2.1: Create a Web Service
 1. Log in to [Render](https://render.com).
-2. Click **New +** and select **Web Service**.
+2. Click **New +** and select **Web Service** (or **Blueprint** to import `render.yaml`).
 3. Connect your GitHub repository: `https://github.com/shruthi200824-hub/PayPilot.git`.
 4. Configure service parameters:
    - **Name**: `paypilot-backend`
    - **Language**: `Python 3`
    - **Region**: Select a region matching or near your Supabase database region.
    - **Branch**: `master`
-   - **Root Directory**: Leave blank (repository root).
+   - **Root Directory**: Leave blank (repository root). *(Setting this to `backend` with `uvicorn backend.app.main:app` causes `ModuleNotFoundError: No module named 'backend'`.)*
    - **Build Command**:
      ```bash
      pip install -r backend/requirements.txt
@@ -84,6 +87,7 @@ python backend/scripts/migrate_sqlite_to_supabase.py --sqlite paypilot.db
      ```bash
      uvicorn backend.app.main:app --host 0.0.0.0 --port $PORT
      ```
+   - **Health Check Path**: `/api/health`
    - **Instance Type**: Free or Starter ($7/month recommended for continuous uptime).
 
 ### Step 2.2: Configure Backend Environment Variables
@@ -104,7 +108,7 @@ Under the **Environment Variables** tab in your Render service, add:
 | `PAYPAL_CLIENT_SECRET` | `EL...` | PayPal Developer Secret |
 | `PAYPAL_WEBHOOK_ID` | `WH...` | PayPal Webhook listener ID |
 | `GEMINI_API_KEY` | `AIza...` | Google AI Studio API Key |
-| `GEMINI_MODEL` | `gemini-2.5-flash` | Gemini model name |
+| `GEMINI_MODEL` | `gemini-3.8-flash` | Gemini model name |
 | `EXCHANGE_RATE_API_URL` | `https://open.er-api.com/v6/latest` | Multi-currency FX rates |
 
 5. Click **Create Web Service**.
@@ -159,7 +163,7 @@ In the **Environment Variables** section, add:
 1. In the app settings on PayPal Developer Dashboard, scroll to **Webhooks** and click **Add Webhook**.
 2. Set the **Webhook URL** to:
    ```
-   https://your-backend.onrender.com/api/payments/webhook
+   https://your-backend.onrender.com/api/webhooks/paypal
    ```
 3. Under **Event Types**, check:
    - `CHECKOUT.ORDER.APPROVED`
@@ -175,7 +179,7 @@ In the **Environment Variables** section, add:
 1. Visit [Google AI Studio](https://aistudio.google.com/).
 2. Generate an API Key under **Get API key**.
 3. Add the key as `GEMINI_API_KEY` on Render.
-4. The backend uses `gemini-2.5-flash` by default, providing high-speed token generation for debtor profiling synthesis, cash flow anomaly detection, and natural language recommendations.
+4. The backend uses `gemini-3.8-flash` by default, providing high-speed token generation for debtor profiling synthesis, cash flow anomaly detection, and natural language recommendations.
 
 ---
 

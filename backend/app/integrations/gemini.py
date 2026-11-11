@@ -17,6 +17,14 @@ class GeminiClient:
     def is_configured(self) -> bool:
         return bool(self.client)
 
+    def _candidate_models(self) -> list[str]:
+        models = [settings.GEMINI_MODEL, "gemini-3.8-flash", "gemini-3.5-flash", "gemini-2.5-flash"]
+        unique_models: list[str] = []
+        for m in models:
+            if m and m not in unique_models:
+                unique_models.append(m)
+        return unique_models
+
     async def chat(self, prompt: str, business_context: str) -> Dict[str, Any]:
         """Interacts with Google Gemini using grounded business context."""
         if not self.is_configured():
@@ -40,16 +48,9 @@ RULES:
 5. Keep your tone concise, professional, and helpful.
 """
 
-        models_to_try = [settings.GEMINI_MODEL, "gemini-3.5-flash", "gemini-3.8-flash"]
-        # Remove duplicates while preserving order
-        unique_models = []
-        for m in models_to_try:
-            if m not in unique_models:
-                unique_models.append(m)
-
         last_error = None
         response = None
-        for model_name in unique_models:
+        for model_name in self._candidate_models():
             try:
                 response = await self.client.aio.models.generate_content(
                     model=model_name,
@@ -97,13 +98,7 @@ RULES:
         if not self.is_configured():
             return None
 
-        models_to_try = [settings.GEMINI_MODEL, "gemini-3.5-flash", "gemini-3.8-flash"]
-        unique_models = []
-        for m in models_to_try:
-            if m not in unique_models:
-                unique_models.append(m)
-
-        for model_name in unique_models:
+        for model_name in self._candidate_models():
             try:
                 response = await self.client.aio.models.generate_content(
                     model=model_name,

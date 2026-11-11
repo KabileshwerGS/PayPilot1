@@ -13,6 +13,8 @@ for _path in [str(_root_dir), str(_backend_dir)]:
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import JSONResponse
+from sqlalchemy import text
 from backend.app.core.config import settings
 from backend.app.core.database import engine, Base
 import backend.app.models  # Ensure all models are registered
@@ -88,9 +90,22 @@ app.include_router(intelligence_router, prefix=settings.API_V1_STR)
 
 @app.get("/api/health")
 def health_check():
-    return {
-        "status": "healthy",
-        "service": "PayPilot Backend Engine",
-        "database": "connected",
-    }
+    try:
+        with engine.connect() as conn:
+            conn.execute(text("SELECT 1"))
+        return {
+            "status": "healthy",
+            "service": "PayPilot Backend Engine",
+            "database": "connected",
+        }
+    except Exception as e:
+        print(f"Health check database error: {e}")
+        return JSONResponse(
+            status_code=503,
+            content={
+                "status": "unhealthy",
+                "service": "PayPilot Backend Engine",
+                "database": "disconnected",
+            },
+        )
 
